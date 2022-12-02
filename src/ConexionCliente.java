@@ -1,14 +1,23 @@
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConexionCliente {
-
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private  String username;
+
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa tu usuario para el chat");
+        String username = sc.nextLine();
+        Socket soket = new Socket("localhost", 1234);
+        ConexionCliente conexionCliente = new ConexionCliente(soket, username);
+        conexionCliente.getMessage();
+        conexionCliente.sendMessage();
+    }
+
 
     public ConexionCliente(Socket socket, String username){
         try{
@@ -72,16 +81,5 @@ public class ConexionCliente {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingresa tu usuario para el chat");
-        String username = sc.nextLine();
-        Socket soket = new Socket("localhost", 1234);
-        ConexionCliente conexionCliente = new ConexionCliente(soket, username);
-        conexionCliente.getMessage();
-        conexionCliente.sendMessage();
-    }
-
 }
 

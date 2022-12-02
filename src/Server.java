@@ -5,6 +5,11 @@ import java.net.Socket;
 public class Server {
 
     private ServerSocket Servesocket;
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server=  new  Server(serverSocket);
+        server.StartServer();
+    }
 
     public Server(ServerSocket socket) {
         this.Servesocket = socket;
@@ -38,11 +43,5 @@ public class Server {
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1234);
-        Server server=  new  Server(serverSocket);
-        server.StartServer();
     }
 }
